@@ -56,5 +56,5 @@ jobs:
         rsync -avz --delete \
           --exclude='.git' \
           --exclude='__pycache__' \
-          ./spark-structured-streaming.py \
+          ./ \
           ${{ secrets.GCP_VM_USER }}@${{ secrets.GCP_VM_HOST }}:${{ secrets.APP_DIR }}
