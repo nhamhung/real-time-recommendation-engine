@@ -182,10 +182,20 @@ curl http://localhost:7071/metrics
 
 # Airflow
 
+- If using Airflow on Docker
+
 ```
 docker compose -f docker-compose-airflow.yaml run --rm airflow-init
 docker compose -f docker-compose.yml -f docker-compose-airflow.yaml down
 docker compose -f docker-compose.yml -f docker-compose-airflow.yaml up -d
 
 gcloud compute ssh --zone "asia-northeast1-a" "instance-20251210-071922" --project "bi-dev-429601" -- -L 9001:localhost:9001 -L 8889:localhost:8888 -L 9090:localhost:9090 -L 3000:localhost:3000 -L 8082:localhost:8082
+```
+
+- If using Airflow PyPi
+
+```
+airflow standalone
+airflow dags list
+airflow dags test spark_dag
 ```

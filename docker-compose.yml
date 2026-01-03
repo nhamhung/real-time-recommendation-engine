@@ -118,5 +118,25 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
+
+  db:
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    environment:
+      POSTGRES_PASSWORD: example
+    networks:
+      iceberg_net:
+    volumes:
+      - ./postgres:/var/lib/postgresql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8083:8080
+    networks:
+      iceberg_net:
 networks:
   iceberg_net:
